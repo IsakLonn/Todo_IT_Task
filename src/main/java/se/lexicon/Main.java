@@ -5,10 +5,11 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
         Person isak = new Person("Isak", "Lönn", "test@hotmail.com");
-        LocalDate deadline = LocalDate.now();
-        deadline = deadline.plusYears(1);
-        TodoItem item = new TodoItem("Task", "Description", isak, deadline);
+        TodoItem item = new TodoItem("Groceries", "Buy groceries", isak, LocalDate.now().plusDays(2));
+        TodoItemTask itemTask = new TodoItemTask(isak, item);
 
+        System.out.println(isak.getSummary());
         System.out.println(item.getSummary());
+        System.out.println(itemTask.getSummary());
     }
 }

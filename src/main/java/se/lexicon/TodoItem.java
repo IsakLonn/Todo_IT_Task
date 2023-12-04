@@ -14,37 +14,32 @@ public class TodoItem {
     private Person creator;
 
     public int getId(){return id;}
-
     public String getTitle(){return title;}
+    public String getTaskDescription(){ return description;}
+    public LocalDate getDeadLine(){return deadLine;}
+    public Person getCreator(){return creator;}
 
     public void setTitle(String title){
         if(title == null || title.isEmpty()) throw new IllegalArgumentException("Title was null or empty");
         else this.title = title;
     }
-
-    public String getTaskDescription(){ return description;}
-
     public void setTaskDescrition(String description){
         if(description == null || description.isEmpty()) throw new IllegalArgumentException("Description was null or empty");
         else this.description = description;
     }
-
-    public LocalDate getDeadLine(){return deadLine;}
-
     public void setDeadLine(LocalDate deadLine){
-        if(description == null) throw new IllegalArgumentException("DeadLine was null");
+        if(deadLine == null ||deadLine.isAfter(LocalDate.now())) throw new IllegalArgumentException("DeadLine was null or has passed");
         else this.deadLine = deadLine;
     }
-
     public void setDone(boolean done){ this.done = done;}
-
-    public boolean isDone(){return done;}
-
-    public Person getCreator(){return creator;}
-
-    public void setCreator(Person creator){ this.creator = creator;}
+    public void setCreator(Person creator){
+        if(creator == null) throw new IllegalArgumentException("Creator was null");
+        this.creator = creator;
+    }
 
     public boolean isOverdue(){ return deadLine.isAfter(LocalDate.now()); }
+    public boolean isDone(){return done;}
+
 
     /**
      gets a summary of the Task. <br>
@@ -56,7 +51,11 @@ public class TodoItem {
      Creator: Anders Svensson
      */
     public String getSummary(){
-        return "id: " + getId() + "\nTitle: " + getTitle() + "\nDescription: " + getTaskDescription() + "\nDeadline: " + getDeadLine() + "\nCreator: " + getCreator().getFirstName() + " " + getCreator().getLastName();
+        return  "id: " + getId() + "\n" +
+                "Title: " + getTitle() + "\n" +
+                "Description: " + getTaskDescription() + "\n" +
+                "Deadline: " + getDeadLine() + "\n" +
+                "Creator: " + getCreator().getFirstName() + " " + getCreator().getLastName();
     }
     public TodoItem(String title, String description, Person creator, LocalDate deadLine){
         setTitle(title);
