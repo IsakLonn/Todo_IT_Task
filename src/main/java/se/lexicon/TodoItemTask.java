@@ -14,16 +14,6 @@ public class TodoItemTask {
     public Person getAsignee(){return asignee;}
     public TodoItem getTodoItem(){return todoItem;}
     public boolean isAssigned(){return assigned;}
-    /**
-     gets a String summary of the To do item task {to do summary and person summary}
-     */
-    public String getSummary(){
-        return  "id: " + getId() + "\n" +
-                "To do:\n" +
-                getTodoItem().getSummary() + "\n" +
-                "Assigned person:\n" +
-                getAsignee().getSummary();
-    }
 
     //setters
     public void setAssigned(boolean assigned){this.assigned = assigned;}
@@ -44,6 +34,27 @@ public class TodoItemTask {
         setAssigned(true);
         id = createUniqueId();
     }
+
+    //overrides
+    @Override
+    public String toString() {
+        return  "id: " + getId() + "\n" +
+                "To do:\n" +
+                getTodoItem();
+    }
+    @Override
+    public boolean equals(Object obj) {
+        TodoItemTask cast = TodoItemTask.class.cast(obj);
+
+        boolean equals;
+
+        equals = cast.getId() == getId();
+        equals = cast.getTodoItem() == getTodoItem();
+
+        return equals;
+    }
+    @Override
+    public int hashCode() { return getTodoItem().hashCode() + getId(); }
 
     //other
     public static int createUniqueId(){ // helper function to create a unique id
