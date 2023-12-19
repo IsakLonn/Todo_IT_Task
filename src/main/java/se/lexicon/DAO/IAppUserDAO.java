@@ -11,5 +11,5 @@ public interface IAppUserDAO {
     public AppUser findByUserName(String username);
     public Collection<AppUser> FindAll();
 
-    public void remove(int username);
+    public void remove(String username);
 }

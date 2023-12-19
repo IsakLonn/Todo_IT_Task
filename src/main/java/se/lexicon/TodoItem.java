@@ -1,7 +1,8 @@
 package se.lexicon;
 
+import se.lexicon.util.StrringHelper;
+
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class TodoItem {
 
@@ -25,11 +26,11 @@ public class TodoItem {
 
     //setters
     public void setTitle(String title){
-        if(StrringHelper.isNullOrEmoty(title)) throw new IllegalArgumentException("Title was null or empty");
+        if(StrringHelper.isNullOrEmpty(title)) throw new IllegalArgumentException("Title was null or empty");
         else this.title = title;
     }
     public void setTaskDescrition(String description){
-        if(StrringHelper.isNullOrEmoty(description)) throw new IllegalArgumentException("Description was null or empty");
+        if(StrringHelper.isNullOrEmpty(description)) throw new IllegalArgumentException("Description was null or empty");
         else this.description = description;
     }
     public void setDeadLine(LocalDate deadLine){

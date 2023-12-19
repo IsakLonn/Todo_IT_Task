@@ -1,5 +1,8 @@
 package se.lexicon;
 
+import se.lexicon.util.AppRole;
+import se.lexicon.util.StrringHelper;
+
 public class AppUser {
 
     //variables
@@ -14,11 +17,11 @@ public class AppUser {
 
     //setters
     public void setUsername(String username){
-        if(StrringHelper.isNullOrEmoty(username)) throw new IllegalArgumentException("Username was null or empty");
+        if(StrringHelper.isNullOrEmpty(username)) throw new IllegalArgumentException("Username was null or empty");
         else this.username = username;
     }
     public void setPassword(String password){
-        if(StrringHelper.isNullOrEmoty(password)) throw new IllegalArgumentException("Password was null or empty");
+        if(StrringHelper.isNullOrEmpty(password)) throw new IllegalArgumentException("Password was null or empty");
         else this.password = password;
     }
     public void setRole(AppRole role){

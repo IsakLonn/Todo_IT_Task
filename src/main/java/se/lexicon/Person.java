@@ -1,5 +1,7 @@
 package se.lexicon;
 
+import se.lexicon.util.StrringHelper;
+
 public class Person {
 
     //variables
@@ -27,15 +29,15 @@ public class Person {
 
     //setters
     public void setFirstName(String firstName){
-        if(StrringHelper.isNullOrEmoty(firstName)) throw new IllegalArgumentException("First name was null or empty");
+        if(StrringHelper.isNullOrEmpty(firstName)) throw new IllegalArgumentException("First name was null or empty");
         this.firstName = firstName;
     }
     public void setLastName(String lastName){
-        if(StrringHelper.isNullOrEmoty(lastName)) throw new IllegalArgumentException("Last name was null or empty");
+        if(StrringHelper.isNullOrEmpty(lastName)) throw new IllegalArgumentException("Last name was null or empty");
         this.lastName = lastName;
     }
     public void setEmail(String email){
-        if(StrringHelper.isNullOrEmoty(email)) throw new IllegalArgumentException("Email was null or empty");
+        if(StrringHelper.isNullOrEmpty(email)) throw new IllegalArgumentException("Email was null or empty");
         this.email = email;
     }
     public void setCredentials(AppUser credentials){
