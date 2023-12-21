@@ -1,4 +1,4 @@
-package se.lexicon.sequencer;
+package se.lexicon.sequencer.deprecated;
 
 public class TodoItemTaskIdSequencer {
     private static int currentId;
