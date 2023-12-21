@@ -1,9 +1,8 @@
-package se.lexicon;
+package se.lexicon.model;
 
 public class TodoItemTask {
 
     //variables
-    static int TasksCreated;
     private int id;
     private boolean assigned;
     private TodoItem todoItem;
@@ -26,13 +25,14 @@ public class TodoItemTask {
         this.asignee = asignee;
         setAssigned(true);
     }
+    private void setId(int id){this.id = id;}
 
     //constructor
-    public TodoItemTask(Person asignee, TodoItem todoItem){
+    public TodoItemTask(Person asignee, TodoItem todoItem, int id){
         setAsignee(asignee);
         setTodoItem(todoItem);
         setAssigned(true);
-        id = createUniqueId();
+        setId(id);
     }
 
     //overrides
@@ -55,11 +55,4 @@ public class TodoItemTask {
     }
     @Override
     public int hashCode() { return getTodoItem().hashCode() + getId(); }
-
-    //other
-    public static int createUniqueId(){ // helper function to create a unique id
-        int uniqueId = TasksCreated;
-        TasksCreated++;
-        return uniqueId;
-    }
 }

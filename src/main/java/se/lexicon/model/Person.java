@@ -1,11 +1,10 @@
-package se.lexicon;
+package se.lexicon.model;
 
-import se.lexicon.util.StrringHelper;
+import se.lexicon.util.StringHelper;
 
 public class Person {
 
     //variables
-    private static int personsCreated;
     private int id;
     private String firstName;
     private String lastName;
@@ -29,15 +28,15 @@ public class Person {
 
     //setters
     public void setFirstName(String firstName){
-        if(StrringHelper.isNullOrEmpty(firstName)) throw new IllegalArgumentException("First name was null or empty");
+        if(StringHelper.isNullOrEmpty(firstName)) throw new IllegalArgumentException("First name was null or empty");
         this.firstName = firstName;
     }
     public void setLastName(String lastName){
-        if(StrringHelper.isNullOrEmpty(lastName)) throw new IllegalArgumentException("Last name was null or empty");
+        if(StringHelper.isNullOrEmpty(lastName)) throw new IllegalArgumentException("Last name was null or empty");
         this.lastName = lastName;
     }
     public void setEmail(String email){
-        if(StrringHelper.isNullOrEmpty(email)) throw new IllegalArgumentException("Email was null or empty");
+        if(StringHelper.isNullOrEmpty(email)) throw new IllegalArgumentException("Email was null or empty");
         this.email = email;
     }
     public void setCredentials(AppUser credentials){
@@ -45,15 +44,17 @@ public class Person {
         this.credentials = credentials;
     }
 
+    private void setId(int id){this.id = id;}
+
     //constructor
-    public Person(String firstName, String lastName, String email){
+    public Person(String firstName, String lastName, String email, int id){
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
-        id = createUniqueId();
+        setId(id);
     }
-    public Person(String firstName, String lastName, String email, AppUser credentials){
-        this(firstName, lastName, email);
+    public Person(String firstName, String lastName, String email, int id, AppUser credentials){
+        this(firstName, lastName, email, id);
         setCredentials(credentials);
     }
 
@@ -77,14 +78,7 @@ public class Person {
 
         return equals;
     }
+
     @Override
     public int hashCode() { return getFirstName().hashCode() + getLastName().hashCode() + getEmail().hashCode() + getId(); }
-
-    //other
-    public static int createUniqueId(){ // helper function to create a unique id
-        int uniqueId = personsCreated;
-        personsCreated++;
-        return uniqueId;
-    }
-
 }

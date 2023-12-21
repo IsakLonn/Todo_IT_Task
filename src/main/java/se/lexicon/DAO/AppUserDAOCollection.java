@@ -1,7 +1,7 @@
 package se.lexicon.DAO;
 
-import se.lexicon.AppUser;
-import se.lexicon.util.StrringHelper;
+import se.lexicon.model.AppUser;
+import se.lexicon.util.StringHelper;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,7 +19,7 @@ public class AppUserDAOCollection implements IAppUserDAO{
 
     @Override
     public AppUser findByUserName(String username) {
-        if(StrringHelper.isNullOrEmpty(username)) return null;
+        if(StringHelper.isNullOrEmpty(username)) return null;
         for (AppUser user: users) {
             if(Objects.equals(user.getUsername(), username)) return user;
         }
@@ -33,7 +33,7 @@ public class AppUserDAOCollection implements IAppUserDAO{
 
     @Override
     public void remove(String username) {
-        if(StrringHelper.isNullOrEmpty(username)) return;
+        if(StringHelper.isNullOrEmpty(username)) return;
         AppUser toRemove = null;
         for (AppUser user: users) {
             if(Objects.equals(user.getUsername(), username)) toRemove = user;

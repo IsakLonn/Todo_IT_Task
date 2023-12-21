@@ -1,9 +1,7 @@
 package se.lexicon.DAO;
 
-import se.lexicon.TodoItem;
-import se.lexicon.TodoItemTask;
+import se.lexicon.model.TodoItemTask;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;

@@ -1,6 +1,6 @@
 package se.lexicon.util;
 
-public class StrringHelper {
+public class StringHelper {
 
     public static boolean isNullOrEmpty(String string){
         return string == null || string.isBlank();

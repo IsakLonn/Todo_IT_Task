@@ -1,13 +1,12 @@
-package se.lexicon;
+package se.lexicon.model;
 
-import se.lexicon.util.StrringHelper;
+import se.lexicon.util.StringHelper;
 
 import java.time.LocalDate;
 
 public class TodoItem {
 
     //variables
-    static int todosCreated;
     private int id;
     private String title;
     private String description;
@@ -26,11 +25,11 @@ public class TodoItem {
 
     //setters
     public void setTitle(String title){
-        if(StrringHelper.isNullOrEmpty(title)) throw new IllegalArgumentException("Title was null or empty");
+        if(StringHelper.isNullOrEmpty(title)) throw new IllegalArgumentException("Title was null or empty");
         else this.title = title;
     }
     public void setTaskDescrition(String description){
-        if(StrringHelper.isNullOrEmpty(description)) throw new IllegalArgumentException("Description was null or empty");
+        if(StringHelper.isNullOrEmpty(description)) throw new IllegalArgumentException("Description was null or empty");
         else this.description = description;
     }
     public void setDeadLine(LocalDate deadLine){
@@ -42,15 +41,16 @@ public class TodoItem {
         if(creator == null) throw new IllegalArgumentException("Creator was null");
         this.creator = creator;
     }
+    private void setId(int id){this.id = id;}
 
     //constructor
-    public TodoItem(String title, String description, Person creator, LocalDate deadLine){
+    public TodoItem(String title, String description, Person creator, LocalDate deadLine, int id){
         setTitle(title);
         setTaskDescrition(description);
         setDeadLine(deadLine);
         setCreator(creator);
         setDone(false);
-        id = createUniqueId();
+        setId(id);
     }
 
     //override
@@ -76,11 +76,4 @@ public class TodoItem {
     }
     @Override
     public int hashCode() { return getTitle().hashCode() + getTaskDescription().hashCode() + getDeadLine().hashCode() + getId(); }
-
-    //other
-    public static int createUniqueId(){ // helper function to create a unique id
-        int uniqueId = todosCreated;
-        todosCreated++;
-        return uniqueId;
-    }
 }

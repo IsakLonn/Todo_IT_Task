@@ -1,8 +1,6 @@
 package se.lexicon.DAO;
 
-import se.lexicon.Person;
-import se.lexicon.TodoItem;
-import se.lexicon.util.StrringHelper;
+import se.lexicon.model.TodoItem;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

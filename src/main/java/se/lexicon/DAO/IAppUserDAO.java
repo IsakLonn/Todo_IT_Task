@@ -1,11 +1,10 @@
 package se.lexicon.DAO;
 
-import se.lexicon.AppUser;
+import se.lexicon.model.AppUser;
 
 import java.util.Collection;
-import java.util.Collections;
 
-public interface IAppUserDAO {
+public interface IAppUserDAO{
 
     public AppUser persist(AppUser user);
     public AppUser findByUserName(String username);

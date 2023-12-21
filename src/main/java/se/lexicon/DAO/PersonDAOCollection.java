@@ -1,8 +1,7 @@
 package se.lexicon.DAO;
 
-import se.lexicon.AppUser;
-import se.lexicon.Person;
-import se.lexicon.util.StrringHelper;
+import se.lexicon.model.Person;
+import se.lexicon.util.StringHelper;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,7 +27,7 @@ public class PersonDAOCollection implements IPersonDAO{
 
     @Override
     public Person findByEmail(String email) {
-        if(StrringHelper.isNullOrEmpty(email)) return null;
+        if(StringHelper.isNullOrEmpty(email)) return null;
         for (Person person: persons) {
             if(person.getEmail() == email) return person;
         }

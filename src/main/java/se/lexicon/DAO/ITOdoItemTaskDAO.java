@@ -1,6 +1,6 @@
 package se.lexicon.DAO;
 
-import se.lexicon.TodoItemTask;
+import se.lexicon.model.TodoItemTask;
 
 import java.util.Collection;
 

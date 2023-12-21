@@ -1,7 +1,7 @@
-package se.lexicon;
+package se.lexicon.model;
 
 import se.lexicon.util.AppRole;
-import se.lexicon.util.StrringHelper;
+import se.lexicon.util.StringHelper;
 
 public class AppUser {
 
@@ -17,11 +17,11 @@ public class AppUser {
 
     //setters
     public void setUsername(String username){
-        if(StrringHelper.isNullOrEmpty(username)) throw new IllegalArgumentException("Username was null or empty");
+        if(StringHelper.isNullOrEmpty(username)) throw new IllegalArgumentException("Username was null or empty");
         else this.username = username;
     }
     public void setPassword(String password){
-        if(StrringHelper.isNullOrEmpty(password)) throw new IllegalArgumentException("Password was null or empty");
+        if(StringHelper.isNullOrEmpty(password)) throw new IllegalArgumentException("Password was null or empty");
         else this.password = password;
     }
     public void setRole(AppRole role){

@@ -1,6 +1,6 @@
 package se.lexicon.DAO;
 
-import se.lexicon.TodoItem;
+import se.lexicon.model.TodoItem;
 
 import java.time.LocalDate;
 import java.util.Collection;
