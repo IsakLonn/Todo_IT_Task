@@ -2,19 +2,15 @@ package se.lexicon.model;
 
 import se.lexicon.util.StringHelper;
 
-public class Person {
+public class Person extends Identifiable {
 
     //variables
-    private int id;
     private String firstName;
     private String lastName;
     private String email;
     private AppUser credentials;
 
     //getters
-    public int getId(){
-        return id;
-    }
     public String getFirstName(){
         return firstName;
     }
@@ -44,18 +40,11 @@ public class Person {
         this.credentials = credentials;
     }
 
-    private void setId(int id){this.id = id;}
-
     //constructor
-    public Person(String firstName, String lastName, String email, int id){
+    public Person(String firstName, String lastName, String email){
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
-        setId(id);
-    }
-    public Person(String firstName, String lastName, String email, int id, AppUser credentials){
-        this(firstName, lastName, email, id);
-        setCredentials(credentials);
     }
 
     //overrides

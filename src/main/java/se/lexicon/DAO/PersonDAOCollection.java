@@ -1,6 +1,8 @@
 package se.lexicon.DAO;
 
 import se.lexicon.model.Person;
+import se.lexicon.sequencer.Sequencer;
+import se.lexicon.util.SequencerEnum;
 import se.lexicon.util.StringHelper;
 
 import java.util.ArrayList;
@@ -37,6 +39,7 @@ public class PersonDAOCollection implements IPersonDAO{
     public Person create(Person person) {
         if(person == null) return null;
         if(find(person.getEmail()) != null) return null;
+        person.setId(Sequencer.getNextId(SequencerEnum.PERSON));
         items.add(person);
         return person;
     }

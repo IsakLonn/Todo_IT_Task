@@ -1,6 +1,8 @@
 package se.lexicon.DAO;
 
 import se.lexicon.model.TodoItemTask;
+import se.lexicon.sequencer.Sequencer;
+import se.lexicon.util.SequencerEnum;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,6 +45,7 @@ public class TodoItemTaskDAOCollection implements ITodoItemTaskDAO {
     @Override
     public TodoItemTask create(TodoItemTask todoItemTask) {
         if(todoItemTask == null) return null;
+        todoItemTask.setId(Sequencer.getNextId(SequencerEnum.TODOITEMTASK));
         items.add(todoItemTask);
         return todoItemTask;
     }

@@ -1,15 +1,13 @@
 package se.lexicon.model;
 
-public class TodoItemTask {
+public class TodoItemTask extends Identifiable{
 
     //variables
-    private int id;
     private boolean assigned;
     private TodoItem todoItem;
     private Person asignee;
 
     //getters
-    public int getId(){return id;}
     public Person getAsignee(){return asignee;}
     public TodoItem getTodoItem(){return todoItem;}
     public boolean isAssigned(){return assigned;}
@@ -25,14 +23,12 @@ public class TodoItemTask {
         this.asignee = asignee;
         setAssigned(true);
     }
-    private void setId(int id){this.id = id;}
 
     //constructor
-    public TodoItemTask(Person asignee, TodoItem todoItem, int id){
+    public TodoItemTask(Person asignee, TodoItem todoItem){
         setAsignee(asignee);
         setTodoItem(todoItem);
         setAssigned(true);
-        setId(id);
     }
 
     //overrides

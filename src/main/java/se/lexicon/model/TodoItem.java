@@ -4,10 +4,9 @@ import se.lexicon.util.StringHelper;
 
 import java.time.LocalDate;
 
-public class TodoItem {
+public class TodoItem extends Identifiable{
 
     //variables
-    private int id;
     private String title;
     private String description;
     private LocalDate deadLine;
@@ -15,7 +14,6 @@ public class TodoItem {
     private Person creator;
 
     //getters
-    public int getId(){return id;}
     public String getTitle(){return title;}
     public String getTaskDescription(){ return description;}
     public LocalDate getDeadLine(){return deadLine;}
@@ -41,16 +39,14 @@ public class TodoItem {
         if(creator == null) throw new IllegalArgumentException("Creator was null");
         this.creator = creator;
     }
-    private void setId(int id){this.id = id;}
 
     //constructor
-    public TodoItem(String title, String description, Person creator, LocalDate deadLine, int id){
+    public TodoItem(String title, String description, Person creator, LocalDate deadLine){
         setTitle(title);
         setTaskDescrition(description);
         setDeadLine(deadLine);
         setCreator(creator);
         setDone(false);
-        setId(id);
     }
 
     //override

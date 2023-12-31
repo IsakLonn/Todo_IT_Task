@@ -1,7 +1,9 @@
 package se.lexicon.DAO;
 
 import se.lexicon.model.TodoItem;
+import se.lexicon.sequencer.Sequencer;
 import se.lexicon.util.DateCheck;
+import se.lexicon.util.SequencerEnum;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -73,6 +75,7 @@ public class TodoItemDAOCollection implements ITodoItemDAO{
     @Override
     public TodoItem create(TodoItem todoItem) {
         if(todoItem == null) return null;
+        todoItem.setId(Sequencer.getNextId(SequencerEnum.TODOITEM));
         items.add(todoItem);
         return todoItem;
     }
