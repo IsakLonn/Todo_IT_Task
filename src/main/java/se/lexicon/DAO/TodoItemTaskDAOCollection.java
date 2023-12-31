@@ -10,6 +10,13 @@ public class TodoItemTaskDAOCollection implements ITOdoItemTaskDAO{
 
     private ArrayList<TodoItemTask> list = new ArrayList<>();
 
+    private static TodoItemTaskDAOCollection instance;
+
+    public static TodoItemTaskDAOCollection getInstance() {
+        if(instance == null) instance = new TodoItemTaskDAOCollection();
+        return instance;
+    }
+
     @Override
     public TodoItemTask persist(TodoItemTask todoItemTask) {
         if(todoItemTask == null) return null;

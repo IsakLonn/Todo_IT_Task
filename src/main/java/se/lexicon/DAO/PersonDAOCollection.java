@@ -9,7 +9,15 @@ import java.util.Objects;
 
 public class PersonDAOCollection implements IPersonDAO{
 
+    private static PersonDAOCollection instance;
+
+    public static PersonDAOCollection getInstance() {
+        if(instance == null) instance = new PersonDAOCollection();
+        return instance;
+    }
+
     private ArrayList<Person> persons = new ArrayList<>();
+
     @Override
     public Person persist(Person person) {
         if(person == null) return null;
@@ -36,7 +44,7 @@ public class PersonDAOCollection implements IPersonDAO{
 
     @Override
     public Collection<Person> findAll() {
-        return persons;
+        return new ArrayList<>(persons);
     }
 
     @Override
@@ -47,4 +55,6 @@ public class PersonDAOCollection implements IPersonDAO{
         }
         if(toRemove != null) persons.remove(toRemove);
     }
+
+
 }

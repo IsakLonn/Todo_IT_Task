@@ -1,5 +1,6 @@
 package se.lexicon;
 
+import se.lexicon.DAO.PersonDAOCollection;
 import se.lexicon.model.AppUser;
 import se.lexicon.model.Person;
 import se.lexicon.model.TodoItem;
@@ -13,8 +14,13 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
         Person isak = new Person("Isak", "Lönn", "test@hotmail.com", Sequencer.getNextId(SequencerEnum.PERSON));
-        TodoItem item = new TodoItem("Groceries", "Buy groceries", isak, LocalDate.now().plusDays(7), Sequencer.getNextId(SequencerEnum.TODOITEM));
-        TodoItemTask itemTask = new TodoItemTask(isak, item, Sequencer.getNextId(SequencerEnum.TODOITEMTASK));
-        AppUser user = new AppUser("Isak", "Apa123", AppRole.ROLE_APP_ADMIN);
+
+        PersonDAOCollection collection = PersonDAOCollection.getInstance();
+        collection.persist(isak);
+        System.out.println(collection.findAll().size());
+
+        collection = PersonDAOCollection.getInstance();
+        collection.persist(isak);
+        System.out.println(collection.findAll().size());
     }
 }

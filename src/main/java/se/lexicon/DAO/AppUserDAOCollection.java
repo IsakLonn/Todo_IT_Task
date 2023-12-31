@@ -6,8 +6,16 @@ import se.lexicon.util.StringHelper;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.Optional;
 
 public class AppUserDAOCollection implements IAppUserDAO{
+
+    private static AppUserDAOCollection instance;
+
+    public static AppUserDAOCollection getInstance() {
+        if(instance == null) instance = new AppUserDAOCollection();
+        return instance;
+    }
 
     private ArrayList<AppUser> users = new ArrayList<AppUser>();
     @Override

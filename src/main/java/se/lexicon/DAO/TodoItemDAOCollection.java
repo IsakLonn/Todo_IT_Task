@@ -10,6 +10,14 @@ import java.util.Objects;
 public class TodoItemDAOCollection implements ITodoItemDAO{
 
     ArrayList<TodoItem> list = new ArrayList<>();
+
+    private static TodoItemDAOCollection instance;
+
+    public static TodoItemDAOCollection getInstance() {
+        if(instance == null) instance = new TodoItemDAOCollection();
+        return instance;
+    }
+
     @Override
     public TodoItem persist(TodoItem todoItem) {
         if(todoItem == null) return null;
