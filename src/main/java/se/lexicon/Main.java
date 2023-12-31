@@ -1,5 +1,6 @@
 package se.lexicon;
 
+import se.lexicon.DAO.AppUserDAOCollection;
 import se.lexicon.DAO.PersonDAOCollection;
 import se.lexicon.model.AppUser;
 import se.lexicon.model.Person;

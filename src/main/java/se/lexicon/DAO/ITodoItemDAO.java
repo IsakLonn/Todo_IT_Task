@@ -1,19 +1,14 @@
 package se.lexicon.DAO;
 
 import se.lexicon.model.TodoItem;
+import se.lexicon.util.DateCheck;
 
 import java.time.LocalDate;
 import java.util.Collection;
 
-public interface ITodoItemDAO {
-
-    public TodoItem persist(TodoItem todoItem);
-    public TodoItem findById(int id);
-    public Collection<TodoItem> findAll();
-    public Collection<TodoItem> findAllByDoneStatus(boolean status);
-    public Collection<TodoItem> findByTitleContains(String title);
-    public Collection<TodoItem> findByPersonId(int id);
-    public Collection<TodoItem> findByDeadlineAfter(LocalDate after);
-    public Collection<TodoItem> findByDeadlineBefore(LocalDate before);
-    public void remove(int id);
+public interface ITodoItemDAO extends IDAOBase<TodoItem, Integer>{
+    public Collection<TodoItem> findBy(boolean status);
+    public Collection<TodoItem> findBy(String title);
+    public Collection<TodoItem> findBy(int id);
+    public Collection<TodoItem> findBy(LocalDate date, DateCheck check);
 }

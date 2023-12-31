@@ -4,10 +4,6 @@ import se.lexicon.model.Person;
 
 import java.util.Collection;
 
-public interface IPersonDAO {
-    public Person persist(Person person);
-    public Person findById(int id);
-    public Person findByEmail(String email);
-    public Collection<Person> findAll();
-    public void remove(int id);
+public interface IPersonDAO extends IDAOBase<Person, Integer>{
+    public Person find(String email);
 }

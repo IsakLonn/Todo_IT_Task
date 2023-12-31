@@ -6,61 +6,63 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
-public class TodoItemTaskDAOCollection implements ITOdoItemTaskDAO{
+public class TodoItemTaskDAOCollection implements ITodoItemTaskDAO {
 
-    private ArrayList<TodoItemTask> list = new ArrayList<>();
-
+    //variables
+    private ArrayList<TodoItemTask> items;
     private static TodoItemTaskDAOCollection instance;
 
+    //constructor
+    private TodoItemTaskDAOCollection(){
+        items = new ArrayList<>();
+    }
+
+    //singleton method
     public static TodoItemTaskDAOCollection getInstance() {
         if(instance == null) instance = new TodoItemTaskDAOCollection();
         return instance;
     }
 
+    //overrides
     @Override
-    public TodoItemTask persist(TodoItemTask todoItemTask) {
-        if(todoItemTask == null) return null;
-        list.add(todoItemTask);
-        return todoItemTask;
-    }
-
-    @Override
-    public TodoItemTask findById(int id) {
-        for (TodoItemTask item: list) {
-            if(item.getId() == id) return item;
-        }
-        return null;
-    }
-
-    @Override
-    public Collection<TodoItemTask> findAll() {
-        return list;
-    }
-
-    @Override
-    public Collection<TodoItemTask> findByAssignedStatus(boolean status) {
+    public Collection<TodoItemTask> findBy(boolean status) {
         ArrayList<TodoItemTask> itemsByAssignedStatus = new ArrayList<>();
-        for (TodoItemTask item: list) {
+        for (TodoItemTask item: items) {
             if(item.isAssigned() == status) itemsByAssignedStatus.add(item);
         }
         return itemsByAssignedStatus;
     }
-
     @Override
-    public Collection<TodoItemTask> findByPersonId(int id) {
+    public Collection<TodoItemTask> findBy(int id) {
         ArrayList<TodoItemTask> itemsByPersonId = new ArrayList<>();
-        for (TodoItemTask item: list) {
+        for (TodoItemTask item: items) {
             if(item.getAsignee().getId() == id) itemsByPersonId.add(item);
         }
         return itemsByPersonId;
     }
-
     @Override
-    public void remove(int id) {
+    public TodoItemTask create(TodoItemTask todoItemTask) {
+        if(todoItemTask == null) return null;
+        items.add(todoItemTask);
+        return todoItemTask;
+    }
+    @Override
+    public Collection<TodoItemTask> findAll() {
+        return new ArrayList<>(items);
+    }
+    @Override
+    public TodoItemTask find(Integer id) {
+        for (TodoItemTask item: items) {
+            if(item.getId() == id) return item;
+        }
+        return null;
+    }
+    @Override
+    public void remove(Integer id) {
         TodoItemTask toRemove = null;
-        for (TodoItemTask item: list) {
+        for (TodoItemTask item: items) {
             if(Objects.equals(item.getId(), id)) toRemove = item;
         }
-        if(toRemove != null) list.remove(toRemove);
+        if(toRemove != null) items.remove(toRemove);
     }
 }

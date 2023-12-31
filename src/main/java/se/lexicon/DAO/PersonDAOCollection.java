@@ -9,52 +9,52 @@ import java.util.Objects;
 
 public class PersonDAOCollection implements IPersonDAO{
 
+    //variables
     private static PersonDAOCollection instance;
+    private ArrayList<Person> items;
 
+    //constructor
+    private PersonDAOCollection(){
+        items = new ArrayList<>();
+    }
+
+    //singleton method
     public static PersonDAOCollection getInstance() {
         if(instance == null) instance = new PersonDAOCollection();
         return instance;
     }
 
-    private ArrayList<Person> persons = new ArrayList<>();
-
+    //overrides
     @Override
-    public Person persist(Person person) {
-        if(person == null) return null;
-        persons.add(person);
-        return person;
-    }
-
-    @Override
-    public Person findById(int id) {
-        for (Person person: persons) {
-            if(person.getId() == id) return person;
-        }
-        return null;
-    }
-
-    @Override
-    public Person findByEmail(String email) {
+    public Person find(String email) {
         if(StringHelper.isNullOrEmpty(email)) return null;
-        for (Person person: persons) {
+        for (Person person: items) {
             if(person.getEmail() == email) return person;
         }
         return null;
     }
-
     @Override
-    public Collection<Person> findAll() {
-        return new ArrayList<>(persons);
+    public Person create(Person person) {
+        if(person == null) return null;
+        if(find(person.getEmail()) != null) return null;
+        items.add(person);
+        return person;
     }
-
     @Override
-    public void remove(int id) {
+    public Collection<Person> findAll() { return new ArrayList<>(items); }
+    @Override
+    public Person find(Integer id) {
+        for (Person person: items) {
+            if(person.getId() == id) return person;
+        }
+        return null;
+    }
+    @Override
+    public void remove(Integer id) {
         Person toRemove = null;
-        for (Person person: persons) {
+        for (Person person: items) {
             if(Objects.equals(person.getId(), id)) toRemove = person;
         }
-        if(toRemove != null) persons.remove(toRemove);
+        if(toRemove != null) items.remove(toRemove);
     }
-
-
 }

@@ -1,6 +1,7 @@
 package se.lexicon.DAO;
 
 import se.lexicon.model.TodoItem;
+import se.lexicon.util.DateCheck;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,86 +10,87 @@ import java.util.Objects;
 
 public class TodoItemDAOCollection implements ITodoItemDAO{
 
-    ArrayList<TodoItem> list = new ArrayList<>();
-
+    //variables
+    ArrayList<TodoItem> items;
     private static TodoItemDAOCollection instance;
 
+    //constructor
+    private TodoItemDAOCollection(){
+        items = new ArrayList<>();
+    }
+
+    //singleton method
     public static TodoItemDAOCollection getInstance() {
         if(instance == null) instance = new TodoItemDAOCollection();
         return instance;
     }
 
+    //overrides
     @Override
-    public TodoItem persist(TodoItem todoItem) {
-        if(todoItem == null) return null;
-        list.add(todoItem);
-        return todoItem;
-    }
-
-    @Override
-    public TodoItem findById(int id) {
-        for (TodoItem item: list) {
-            if(item.getId() == id) return item;
-        }
-        return null;
-    }
-
-    @Override
-    public Collection<TodoItem> findAll() {
-        return list;
-    }
-
-    @Override
-    public Collection<TodoItem> findAllByDoneStatus(boolean status) {
+    public Collection<TodoItem> findBy(boolean status) {
         ArrayList<TodoItem> itemsByStatus = new ArrayList<>();
-        for (TodoItem item: list) {
+        for (TodoItem item: items) {
             if(item.isDone() == status) itemsByStatus.add(item);
         }
         return itemsByStatus;
     }
-
     @Override
-    public Collection<TodoItem> findByTitleContains(String title) {
+    public Collection<TodoItem> findBy(String title) {
         ArrayList<TodoItem> itemsByTitle = new ArrayList<>();
-        for (TodoItem item: list) {
+        for (TodoItem item: items) {
             if(item.getTitle().contains(title)) itemsByTitle.add(item);
         }
         return itemsByTitle;
     }
-
     @Override
-    public Collection<TodoItem> findByPersonId(int id) {
+    public Collection<TodoItem> findBy(int id) {
         ArrayList<TodoItem> itemsByPersonId = new ArrayList<>();
-        for (TodoItem item: list) {
+        for (TodoItem item: items) {
             if(item.getCreator().getId() == id) itemsByPersonId.add(item);
         }
         return itemsByPersonId;
     }
-
     @Override
-    public Collection<TodoItem> findByDeadlineAfter(LocalDate after) {
-        ArrayList<TodoItem> itemsByDeadlineAfter = new ArrayList<>();
-        for (TodoItem item: list) {
-            if(item.getDeadLine().isAfter(after)) itemsByDeadlineAfter.add(item);
+    public Collection<TodoItem> findBy(LocalDate date, DateCheck check) {
+        ArrayList<TodoItem> itemsByDeadline = new ArrayList<>();
+
+        for (TodoItem item: items) {
+            switch (check){
+                case AFTER:
+                    if(item.getDeadLine().isAfter(date)) itemsByDeadline.add(item);
+                    break;
+
+                case BEFORE:
+                    if(item.getDeadLine().isBefore(date)) itemsByDeadline.add(item);
+                    break;
+            }
+
         }
-        return itemsByDeadlineAfter;
-    }
 
+        return itemsByDeadline;
+
+    }
     @Override
-    public Collection<TodoItem> findByDeadlineBefore(LocalDate before) {
-        ArrayList<TodoItem> itemsByDeadlineBefore = new ArrayList<>();
-        for (TodoItem item: list) {
-            if(item.getDeadLine().isBefore(before)) itemsByDeadlineBefore.add(item);
+    public TodoItem create(TodoItem todoItem) {
+        if(todoItem == null) return null;
+        items.add(todoItem);
+        return todoItem;
+    }
+    @Override
+    public Collection<TodoItem> findAll() { return new ArrayList<>(items); }
+    @Override
+    public TodoItem find(Integer id) {
+        for (TodoItem item: items) {
+            if(item.getId() == id) return item;
         }
-        return itemsByDeadlineBefore;
+        return null;
     }
-
     @Override
-    public void remove(int id) {
+    public void remove(Integer id) {
         TodoItem toRemove = null;
-        for (TodoItem item: list) {
+        for (TodoItem item: items) {
             if(Objects.equals(item.getId(), id)) toRemove = item;
         }
-        if(toRemove != null) list.remove(toRemove);
+        if(toRemove != null) items.remove(toRemove);
     }
 }
