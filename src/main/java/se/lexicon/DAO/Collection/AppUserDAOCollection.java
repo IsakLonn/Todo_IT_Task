@@ -1,5 +1,6 @@
-package se.lexicon.DAO;
+package se.lexicon.DAO.Collection;
 
+import se.lexicon.DAO.Interface.IAppUserDAO;
 import se.lexicon.model.AppUser;
 import se.lexicon.util.StringHelper;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
-public class AppUserDAOCollection implements IAppUserDAO{
+public class AppUserDAOCollection implements IAppUserDAO {
 
     // variables
     private static AppUserDAOCollection instance;

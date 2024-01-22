@@ -1,5 +1,6 @@
-package se.lexicon.DAO;
+package se.lexicon.DAO.Collection;
 
+import se.lexicon.DAO.Interface.IPersonDAO;
 import se.lexicon.model.Person;
 import se.lexicon.sequencer.Sequencer;
 import se.lexicon.util.SequencerEnum;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
-public class PersonDAOCollection implements IPersonDAO{
+public class PersonDAOCollection implements IPersonDAO {
 
     //variables
     private static PersonDAOCollection instance;

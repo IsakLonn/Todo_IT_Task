@@ -1,4 +1,4 @@
-package se.lexicon.DAO;
+package se.lexicon.DAO.Interface;
 
 import se.lexicon.model.TodoItem;
 import se.lexicon.util.DateCheck;

@@ -1,5 +1,6 @@
-package se.lexicon.DAO;
+package se.lexicon.DAO.Collection;
 
+import se.lexicon.DAO.Interface.ITodoItemDAO;
 import se.lexicon.model.TodoItem;
 import se.lexicon.sequencer.Sequencer;
 import se.lexicon.util.DateCheck;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
-public class TodoItemDAOCollection implements ITodoItemDAO{
+public class TodoItemDAOCollection implements ITodoItemDAO {
 
     //variables
     ArrayList<TodoItem> items;

@@ -1,5 +1,6 @@
-package se.lexicon.DAO;
+package se.lexicon.DAO.Collection;
 
+import se.lexicon.DAO.Interface.ITodoItemTaskDAO;
 import se.lexicon.model.TodoItemTask;
 import se.lexicon.sequencer.Sequencer;
 import se.lexicon.util.SequencerEnum;
