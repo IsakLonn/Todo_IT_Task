@@ -7,8 +7,6 @@ public class Person extends Identifiable {
     //variables
     private String firstName;
     private String lastName;
-    private String email;
-    private AppUser credentials;
 
     //getters
     public String getFirstName(){
@@ -17,10 +15,6 @@ public class Person extends Identifiable {
     public String getLastName(){
         return lastName;
     }
-    public String getEmail(){
-        return email;
-    }
-    public AppUser getCredentials(){ return credentials;}
 
     //setters
     public void setFirstName(String firstName){
@@ -31,28 +25,18 @@ public class Person extends Identifiable {
         if(StringHelper.isNullOrEmpty(lastName)) throw new IllegalArgumentException("Last name was null or empty");
         this.lastName = lastName;
     }
-    public void setEmail(String email){
-        if(StringHelper.isNullOrEmpty(email)) throw new IllegalArgumentException("Email was null or empty");
-        this.email = email;
-    }
-    public void setCredentials(AppUser credentials){
-        if(credentials == null) throw new IllegalArgumentException("Credentials was null");
-        this.credentials = credentials;
-    }
 
     //constructor
-    public Person(String firstName, String lastName, String email){
+    public Person(String firstName, String lastName){
         setFirstName(firstName);
         setLastName(lastName);
-        setEmail(email);
     }
 
     //overrides
     @Override
     public String toString() {
         return  "id: " + getId() + "\n" +
-                "name: " + getFirstName() + " " + getLastName() + "\n" +
-                "email: " + getEmail();
+                "name: " + getFirstName() + " " + getLastName();
     }
     @Override
     public boolean equals(Object obj) {
@@ -63,11 +47,10 @@ public class Person extends Identifiable {
         equals = cast.getFirstName() == getFirstName();
         equals = cast.getLastName() == getLastName();
         equals = cast.getId() == getId();
-        equals = cast.getEmail() == getEmail();
 
         return equals;
     }
 
     @Override
-    public int hashCode() { return getFirstName().hashCode() + getLastName().hashCode() + getEmail().hashCode() + getId(); }
+    public int hashCode() { return getFirstName().hashCode() + getLastName().hashCode() + getId(); }
 }

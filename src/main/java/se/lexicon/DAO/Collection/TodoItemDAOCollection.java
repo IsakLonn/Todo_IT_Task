@@ -49,7 +49,7 @@ public class TodoItemDAOCollection implements ITodoItemDAO {
     public Collection<TodoItem> findBy(int id) {
         ArrayList<TodoItem> itemsByPersonId = new ArrayList<>();
         for (TodoItem item: items) {
-            if(item.getCreator().getId() == id) itemsByPersonId.add(item);
+            if(item.getId() == id) itemsByPersonId.add(item);
         }
         return itemsByPersonId;
     }

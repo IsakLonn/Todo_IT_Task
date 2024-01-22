@@ -5,8 +5,8 @@ import se.lexicon.model.Person;
 
 public class Main {
     public static void main(String[] args) {
-        Person isak = new Person("Isak", "Lönn", "test@hotmail.com");
-        Person test = new Person("Test", "Testson", "Test@hotmail.com");
+        Person isak = new Person("Isak", "Lönn");
+        Person test = new Person("Test", "Testson");
 
         PersonDAOCollection collection = PersonDAOCollection.getInstance();
         collection.create(isak);

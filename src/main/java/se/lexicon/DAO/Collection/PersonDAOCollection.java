@@ -27,19 +27,9 @@ public class PersonDAOCollection implements IPersonDAO {
         return instance;
     }
 
-    //overrides
-    @Override
-    public Person find(String email) {
-        if(StringHelper.isNullOrEmpty(email)) return null;
-        for (Person person: items) {
-            if(person.getEmail() == email) return person;
-        }
-        return null;
-    }
     @Override
     public Person create(Person person) {
         if(person == null) return null;
-        if(find(person.getEmail()) != null) return null;
         person.setId(Sequencer.getNextId(SequencerEnum.PERSON));
         items.add(person);
         return person;

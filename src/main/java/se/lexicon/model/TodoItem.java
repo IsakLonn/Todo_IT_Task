@@ -11,13 +11,13 @@ public class TodoItem extends Identifiable{
     private String description;
     private LocalDate deadLine;
     private boolean done;
-    private Person creator;
+    private int asignee_ID;
 
     //getters
     public String getTitle(){return title;}
     public String getTaskDescription(){ return description;}
     public LocalDate getDeadLine(){return deadLine;}
-    public Person getCreator(){return creator;}
+    public int getAsignee_ID(){return asignee_ID;}
     public boolean isOverdue(){ return deadLine.isAfter(LocalDate.now()); }
     public boolean isDone(){return done;}
 
@@ -35,17 +35,13 @@ public class TodoItem extends Identifiable{
         else this.deadLine = deadLine;
     }
     public void setDone(boolean done){ this.done = done;}
-    public void setCreator(Person creator){
-        if(creator == null) throw new IllegalArgumentException("Creator was null");
-        this.creator = creator;
-    }
+    public void setAsignee_ID(int ID){ asignee_ID = ID; }
 
     //constructor
-    public TodoItem(String title, String description, Person creator, LocalDate deadLine){
+    public TodoItem(String title, String description, LocalDate deadLine){
         setTitle(title);
         setTaskDescrition(description);
         setDeadLine(deadLine);
-        setCreator(creator);
         setDone(false);
     }
 
