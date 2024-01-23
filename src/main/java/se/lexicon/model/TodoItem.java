@@ -2,6 +2,7 @@ package se.lexicon.model;
 
 import se.lexicon.util.StringHelper;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class TodoItem extends Identifiable{
@@ -9,16 +10,15 @@ public class TodoItem extends Identifiable{
     //variables
     private String title;
     private String description;
-    private LocalDate deadLine;
+    private Date deadLine;
     private boolean done;
     private int asignee_ID;
 
     //getters
     public String getTitle(){return title;}
     public String getTaskDescription(){ return description;}
-    public LocalDate getDeadLine(){return deadLine;}
+    public Date getDeadLine(){return deadLine;}
     public int getAsignee_ID(){return asignee_ID;}
-    public boolean isOverdue(){ return deadLine.isAfter(LocalDate.now()); }
     public boolean isDone(){return done;}
 
     //setters
@@ -30,19 +30,27 @@ public class TodoItem extends Identifiable{
         if(StringHelper.isNullOrEmpty(description)) throw new IllegalArgumentException("Description was null or empty");
         else this.description = description;
     }
-    public void setDeadLine(LocalDate deadLine){
-        if(deadLine == null ||deadLine.isBefore(LocalDate.now()) || deadLine.equals(LocalDate.now())) throw new IllegalArgumentException("DeadLine was null or before " + LocalDate.now());
-        else this.deadLine = deadLine;
+    public void setDeadLine(Date deadLine){
+        this.deadLine = deadLine;
     }
     public void setDone(boolean done){ this.done = done;}
     public void setAsignee_ID(int ID){ asignee_ID = ID; }
 
     //constructor
-    public TodoItem(String title, String description, LocalDate deadLine){
+    public TodoItem(String title, String description, Date deadLine, boolean done, int asignee_ID){
         setTitle(title);
         setTaskDescrition(description);
         setDeadLine(deadLine);
-        setDone(false);
+        setDone(done);
+        setAsignee_ID(asignee_ID);
+    }
+    public TodoItem(String title, String description, Date deadLine,boolean done, int asignee_ID, int id){
+        setTitle(title);
+        setTaskDescrition(description);
+        setDeadLine(deadLine);
+        setDone(done);
+        setAsignee_ID(asignee_ID);
+        setId(id);
     }
 
     //override

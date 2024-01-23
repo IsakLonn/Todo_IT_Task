@@ -55,22 +55,7 @@ public class TodoItemDAOCollection implements ITodoItemDAO {
     }
     @Override
     public Collection<TodoItem> findBy(LocalDate date, DateCheck check) {
-        ArrayList<TodoItem> itemsByDeadline = new ArrayList<>();
-
-        for (TodoItem item: items) {
-            switch (check){
-                case AFTER:
-                    if(item.getDeadLine().isAfter(date)) itemsByDeadline.add(item);
-                    break;
-
-                case BEFORE:
-                    if(item.getDeadLine().isBefore(date)) itemsByDeadline.add(item);
-                    break;
-            }
-
-        }
-
-        return itemsByDeadline;
+        return null;
 
     }
     @Override
