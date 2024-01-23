@@ -31,6 +31,11 @@ public class Person extends Identifiable {
         setFirstName(firstName);
         setLastName(lastName);
     }
+    public Person(String firstName, String lastName, int id){
+        setFirstName(firstName);
+        setLastName(lastName);
+        setId(id);
+    }
 
     //overrides
     @Override

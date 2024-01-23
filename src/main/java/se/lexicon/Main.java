@@ -11,12 +11,11 @@ public class Main {
         Connection.set_username("root");
         Connection.set_password("Undulat159!");
 
-        Person me = new Person("test", "testson");
+
         var collection = new PeopleCollection();
+        Person me = collection.find(30);
+        me.setLastName("updateson");
+        collection.update(me);
 
-        collection.create(me);
-        var findAll = collection.findAll();
-
-        findAll.forEach(System.out::println);
     }
 }
